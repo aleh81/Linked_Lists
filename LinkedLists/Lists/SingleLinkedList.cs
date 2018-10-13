@@ -16,9 +16,16 @@ namespace Lists
             {
                 Value = value;
             }
+
+            ~Node()
+            {
+                Console.Beep();
+
+                Console.WriteLine($"Removed: {Value}");
+            }
         }
 
-        private Node Tail { get; set; } = null;
+        private Node Head { get; set; } = null;
 
         public int Count { get; private set; } = default(int);
 
@@ -26,14 +33,14 @@ namespace Lists
         {
             var node = new Node(value);
 
-            if (Tail == null)
+            if (Head == null)
             {
-                Tail = node;
+                Head = node;
                 Count++;
             }
             else
             {
-                var current = Tail;
+                var current = Head;
 
                 while (current.Next != null)
                 {
@@ -45,6 +52,27 @@ namespace Lists
             }
         }
 
+        public void Remove(T deletedValue)
+        {
+            var current = Head;
+
+            while (current != null)
+            {
+                if (current.Value.Equals(deletedValue))
+                {
+                    var prev = current;
+                    //ALLLO 
+                    var next = current.Next;
+                    current = null;
+                    Count--;
+                }
+                else
+                {
+                    current = current.Next;
+                }
+            }
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)this).GetEnumerator();
@@ -52,7 +80,7 @@ namespace Lists
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            Node current = Tail;
+            var current = Head;
 
             while (current != null)
             {

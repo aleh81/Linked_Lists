@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using Lists;
 
 namespace LinkedLists.UI
@@ -23,20 +22,14 @@ namespace LinkedLists.UI
                 "Friends",
             };
 
+            linkedList.Remove("Dear");
+
             foreach (var node in linkedList)
             {
                 Console.WriteLine(node);
             }
 
             Console.WriteLine($"Count of elements: {linkedList.Count}");
-        }
-
-        private static void Display<T>(T list) where T : IEnumerable
-        {
-            foreach (var node in list)
-            {
-                Console.WriteLine(node);
-            }
         }
     }
 }
