@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using Lists;
 
 namespace LinkedLists.UI
 {
@@ -6,9 +8,35 @@ namespace LinkedLists.UI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            UsingSingleLinkedList();
 
             Console.ReadKey();
+        }
+
+        private static void UsingSingleLinkedList()
+        {
+            var linkedList = new SingleLinkedList<string>
+            {
+                "Hello",
+                "my",
+                "Dear",
+                "Friends",
+            };
+
+            foreach (var node in linkedList)
+            {
+                Console.WriteLine(node);
+            }
+
+            Console.WriteLine($"Count of elements: {linkedList.Count}");
+        }
+
+        private static void Display<T>(T list) where T : IEnumerable
+        {
+            foreach (var node in list)
+            {
+                Console.WriteLine(node);
+            }
         }
     }
 }
